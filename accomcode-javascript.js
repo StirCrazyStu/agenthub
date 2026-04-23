@@ -28,26 +28,3 @@ document.getElementById('urlForm').addEventListener('submit', function(event) {
 		resultDiv.classList.add('d-none');
 		resultDiv.classList.remove('alert-danger', 'alert-info');
 	});
-
-	// Work in progress - Testing dynamic template based approach so I can import header/footer.
-	window.addEventListener('DOMContentLoaded', () => {
-	  const TEMPLATE_BASE = 'https://www.domain.com/tpl-parts/';
-	  const templateElements = document.querySelectorAll('[id^="template-"]');
-
-	  templateElements.forEach(el => {
-		const templateName = el.id.replace(/^template-/, '');
-		const filePath = `${TEMPLATE_BASE}${templateName}.html`;
-
-		fetch(filePath)
-		  .then(response => {
-			if (!response.ok) throw new Error(`Failed to load ${filePath}: ${response.status}`);
-			return response.text();
-		  })
-		  .then(html => {
-			el.innerHTML = html;
-		  })
-		  .catch(error => {
-			console.error(`Error loading ${filePath}:`, error);
-		  });
-	  });
-	});
