@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.0",
+  "id": "66b73c8c-234b-4c3a-8c9e-56ce7b869a1a",
+  "packageName": "com.stu.accomcode",
+  "developer": {
+    "name": "Stewart Irvine",
+    "websiteUrl": "https://YOUR-DOMAIN",
+    "privacyUrl": "https://YOUR-DOMAIN/privacy",
+    "termsOfUseUrl": "https://YOUR-DOMAIN/terms"
+  },
+  "name": {
+    "short": "Accom Code",
+    "full": "Accommodation Code Extractor"
+  },
+  "description": {
+    "short": "Extract accommodation codes from TUI URLs",
+    "full": "Tool to extract Atcom accommodation codes from TUI booking URLs."
+  },
+  "icons": {
+    "color": "icons/color.png",
+    "outline": "icons/outline.png"
+  },
+  "accentColor": "#70cbf4",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://YOUR-DOMAIN/config.html",
+      "canUpdateConfiguration": true,
+      "scopes": ["team", "groupchat"]
+    }
+  ],
+  "permissions": ["identity"],
+  "validDomains": ["YOUR-DOMAIN"]
+}
