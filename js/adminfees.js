@@ -166,5 +166,5 @@ document.addEventListener("DOMContentLoaded", function () {
         return today.toLocaleDateString('en-GB', options);
     }
 
-    document.getElementById('dateOutput').innerHTML += calculateFutureDate(69);
+    document.getElementById('dateOutput').innerHTML += calculateFutureDate(70) - 1;
 });
