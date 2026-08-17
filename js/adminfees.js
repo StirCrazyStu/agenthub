@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const timeDifference = Math.abs(endDate.setHours(0, 0, 0, 0) - startDate.setHours(0, 0, 0, 0));
+        const timeDifference = Math.abs(endDate.setHours(23, 59, 59, 999) - startDate.setHours(0, 0, 0, 0));
         const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
         const bookingAmount = parseFloat(document.getElementById("bookingAmount").value) || 0;
 
