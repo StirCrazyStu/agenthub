@@ -106,14 +106,6 @@
 		</footer>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
-    const untilDeparture = document.getElementById("untilDeparture").textContent;
-    const cancelFee = document.getElementById("cancelFee").textContent;
-    const changeLater = document.getElementById("changeDateLater").textContent;
-    const changeAccom = document.getElementById("changeAccom").textContent;
-    const changeEarlier = document.getElementById("changeDateEarlier").textContent;
-    const changeUpgrade = document.getElementById("changeUpgrade").textContent;
-    const changeName = document.getElementById("changeName").textContent;
-
     const feeCurrency = '&pound;';
     const feeFiftyPP = "50 per person.";
     const feeTwentyFivePP = "25 per person.";
@@ -121,6 +113,14 @@
     const feeFree = "FREE.";
     const feeDeposit = "Deposit Only.";
     const enterDate = "Please enter a departure date.";
+		
+    const untilDeparture = document.getElementById("untilDeparture").textContent;
+    const cancelFee = document.getElementById("cancelFee").textContent;
+    const changeLater = document.getElementById("changeDateLater").textContent;
+    const changeAccom = document.getElementById("changeAccom").textContent;
+    const changeEarlier = document.getElementById("changeDateEarlier").textContent;
+    const changeUpgrade = document.getElementById("changeUpgrade").textContent;
+    const changeName = document.getElementById("changeName").textContent;
 
     let feeCancellation = '', feeChangeLater = '', feeChangeAccom = '', feeChangeEarlier = '', feeChangeUpgrade = '', feeChangeName = '';
 
