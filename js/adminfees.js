@@ -192,3 +192,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById('dateOutput').textContent = calculateFutureDate(70);
 });
+
