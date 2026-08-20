@@ -150,6 +150,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let feeCancellation = '', feeChangeLater = '', feeChangeAccom = '', feeChangeEarlier = '', feeChangeUpgrade = '', feeChangeName = '';
 
+	function setFavicon() {
+        const symbol = document.getElementById("tui-logo");
+
+        if (!symbol) return;
+
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("viewBox", "0 0 389 172");
+
+        const clone = symbol.cloneNode(true);
+        clone.removeAttribute("id");
+
+        svg.appendChild(clone);
+
+        const svgString = new XMLSerializer().serializeToString(svg);
+        const favicon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString);
+
+        const link = document.createElement("link");
+        link.rel = "icon";
+        link.type = "image/svg+xml";
+        link.href = favicon;
+
+        document.head.appendChild(link);
+    }
+
+    setFavicon();
+
     bookingAmount.addEventListener("input", function (e) {
 	
         e.target.value = e.target.value.replace(/[^\d.]/g, "");
