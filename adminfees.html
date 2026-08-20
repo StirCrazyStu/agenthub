@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <title>Admin Fees - STUIhub</title>
+    <title>Admin Fees - AgentHub</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Stewart Irvine">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <style>
+    <link href="https://www.tui.co.uk/static-images/_ui/mobile/th/images/thomson/favicon.ico" rel="shortcut icon" type="image/x-icon">
+	<style>
 		.fs-7 {
 			font-size: 0.875rem !important;
 		}
@@ -149,34 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const departureDate = document.getElementById("departureDate");
 
     let feeCancellation = '', feeChangeLater = '', feeChangeAccom = '', feeChangeEarlier = '', feeChangeUpgrade = '', feeChangeName = '';
-
-	function setFavicon() {
-        const symbol = document.getElementById("tui-logo");
-
-        if (!symbol) return;
-
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-
-        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svg.setAttribute("viewBox", "0 0 389 172");
-
-        const clone = symbol.cloneNode(true);
-        clone.removeAttribute("id");
-
-        svg.appendChild(clone);
-
-        const svgString = new XMLSerializer().serializeToString(svg);
-        const favicon = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString);
-
-        const link = document.createElement("link");
-        link.rel = "icon";
-        link.type = "image/svg+xml";
-        link.href = favicon;
-
-        document.head.appendChild(link);
-    }
-
-    setFavicon();
 
     bookingAmount.addEventListener("input", function (e) {
 	
