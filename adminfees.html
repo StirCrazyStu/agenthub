@@ -183,15 +183,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return Math.round((departureLocal - todayLocal) / (1000 * 60 * 60 * 24));
     }
 
-
-    function getCancellationFees(amount, percentage) {
-
-        const feeAmount = (amount / 100) * percentage;
-        const feePercentage = feeCurrency + feeAmount.toFixed(2) + " (" + percentage + "%)";
-        const percentageOnly = percentage === 0 ? feeDeposit : percentage + "%";
-
-        return (amount === 0 || percentage === 0 ? percentageOnly : feePercentage);
-    }
+	function getCancellationFees(amount, percentage) {
+		
+		const feeAmount = (amount / 100) * percentage;
+		const feePercentage = feeCurrency + feeAmount.toFixed(2) + ' (' + percentage + '%)';
+		const percentageOnly = percentage === 0 ? feeDeposit : percentage + '%';
+		
+		return (amount === 0 || percentage === 0) ? percentageOnly : feePercentage;
+	}
 
     function setFeeValues(daysDifference, bookingAmountValue) {
 
