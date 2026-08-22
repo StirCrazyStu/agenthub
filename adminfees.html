@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <title>Admin Fees - AgentHub</title>
+    <title>Admin Fees - STUIhub</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Stewart Irvine">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="https://www.tui.co.uk/static-images/_ui/mobile/th/images/thomson/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<style>
 		.fs-7 {
 			font-size: 0.875rem !important;
@@ -51,7 +50,6 @@
                     </svg>
                 </a>
             </div>
-
         </div>
     </header>
     <main id="main-container" class="bg-white pt-4 flex-grow-1">
@@ -149,107 +147,71 @@ document.addEventListener("DOMContentLoaded", function () {
     const bookingAmount = document.getElementById("bookingAmount");
     const departureDate = document.getElementById("departureDate");
 
-    let feeCancellation = '', feeChangeLater = '', feeChangeAccom = '', feeChangeEarlier = '', feeChangeUpgrade = '', feeChangeName = '';
+    let feeCancellation, feeChangeLater, feeChangeAccom, feeChangeEarlier, feeChangeUpgrade, feeChangeName;
 
     bookingAmount.addEventListener("input", function (e) {
-	
         e.target.value = e.target.value.replace(/[^\d.]/g, "");
     });
 
     document.getElementById("reset").addEventListener("click", function () {
-	
         fees.classList.add("d-none");
         feesOutput.querySelector(".date-error")?.remove();
     });
 
     function parseDateInput(dateString) {
-	
         const [year, month, day] = dateString.split("-").map(Number);
-		
         return new Date(year, month - 1, day);
     }
 
     function getDaysUntilDeparture(dateString) {
 	
-        const departureDate = parseDateInput(dateString);
         const today = new Date();
-        const todayLocal = new Date(today.getFullYear(), today.getMonth(), today.getDate() );
-        const departureLocal = new Date(departureDate.getFullYear(), departureDate.getMonth(), departureDate.getDate());
+        const today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 		
-        return Math.round((departureLocal - todayLocal) / (1000 * 60 * 60 * 24));
+		const departure = parseDateInput(dateString);
+        const departure = new Date(departure.getFullYear(), departure.getMonth(), departure.getDate());
+
+        return Math.round((departure - today) / (1000 * 60 * 60 * 24));
     }
 
-	function getCancellationFees(amount, percentage) {
-		
-		const feeAmount = (amount / 100) * percentage;
-		const feePercentage = feeCurrency + feeAmount.toFixed(2) + ' (' + percentage + '%)';
-		const percentageOnly = percentage === 0 ? feeDeposit : percentage + '%';
-		
-		return (amount === 0 || percentage === 0) ? percentageOnly : feePercentage;
-	}
+    function getCancellationPercentage(daysDifference) {
+        if (daysDifference >= 70) return 0;
+        if (daysDifference >= 63) return 30;
+        if (daysDifference >= 49) return 50;
+        if (daysDifference >= 29) return 70;
+        if (daysDifference >= 15) return 90;
+        return 100;
+    }
+
+    function getCancellationFees(amount, percentage) {
+
+        if (percentage === 0) {
+            return feeDeposit;
+        }
+
+        if (!amount || amount <= 0) {
+            return percentage + "%";
+        }
+
+        const feeAmount = (amount / 100) * percentage;
+
+        return feeCurrency + feeAmount.toFixed(2) + " (" + percentage + "%)";
+    }
 
     function setFeeValues(daysDifference, bookingAmountValue) {
 
-        if (daysDifference >= 70) {
-
-            feeCancellation = 0;
-            feeChangeLater = feeCurrency + feeFiftyPP;
-            feeChangeAccom = feeCurrency + feeFiftyPP;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-
-        } else if (daysDifference <= 14) {
-
-            feeCancellation = 100;
-            feeChangeLater = feeCancel;
-            feeChangeAccom = feeCancel;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-
-        } else if (daysDifference <= 28) {
-
-            feeCancellation = 90;
-            feeChangeLater = feeCancel;
-            feeChangeAccom = feeCancel;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-
-        } else if (daysDifference <= 48) {
-
-            feeCancellation = 70;
-            feeChangeLater = feeCancel;
-            feeChangeAccom = feeCurrency + feeFiftyPP;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-
-        } else if (daysDifference <= 62) {
-
-            feeCancellation = 50;
-            feeChangeLater = feeCancel;
-            feeChangeAccom = feeCurrency + feeFiftyPP;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-
-        } else if (daysDifference <= 69) {
-
-            feeCancellation = 30;
-            feeChangeLater = feeCancel;
-            feeChangeAccom = feeCurrency + feeFiftyPP;
-            feeChangeEarlier = feeCurrency + feeFiftyPP;
-            feeChangeUpgrade = feeFree;
-            feeChangeName = feeCurrency + feeTwentyFivePP;
-        }
-
-        feeCancellation = getCancellationFees(bookingAmountValue, feeCancellation);
+        const cancellationPercentage = getCancellationPercentage(daysDifference);
+		
+        feeCancellation = getCancellationFees(bookingAmountValue, cancellationPercentage);
+        feeChangeLater = daysDifference >= 70 ? feeCurrency + feeFiftyPP : feeCancel;
+        feeChangeAccom = daysDifference >= 29 ? feeCurrency + feeFiftyPP : feeCancel;
+        feeChangeEarlier = feeCurrency + feeFiftyPP;
+        feeChangeUpgrade = feeFree;
+        feeChangeName = feeCurrency + feeTwentyFivePP;
     }
 
     function updateOutput(daysDifference) {
-	
+
         document.getElementById("untilDepartureValue").textContent = daysDifference;
         document.getElementById("cancelFeeValue").textContent = feeCancellation;
         document.getElementById("changeDateLaterValue").textContent = feeChangeLater;
@@ -266,16 +228,32 @@ document.addEventListener("DOMContentLoaded", function () {
         feesOutput.querySelector(".date-error")?.remove();
 
         if (!departureDate.value) {
-			
-			const error = document.createElement("div");
+
+            const error = document.createElement("div");
+
             error.className = "date-error mt-3";
             error.textContent = enterDate;
+
             feesOutput.prepend(error);
 
             return;
         }
 
         const daysDifference = getDaysUntilDeparture(departureDate.value);
+
+        if (daysDifference < 0) {
+
+            const error = document.createElement("div");
+
+            error.className = "date-error mt-3";
+            error.textContent = "The departure date cannot be in the past.";
+
+            feesOutput.prepend(error);
+            fees.classList.add("d-none");
+
+            return;
+        }
+
         const bookingAmountValue = parseFloat(bookingAmount.value) || 0;
 
         setFeeValues(daysDifference, bookingAmountValue);
@@ -283,16 +261,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fees.scrollIntoView({behavior: "smooth"});
     });
-	
+
     document.addEventListener("click", function (e) {
-		
         const btn = e.target.closest("#copybutton");
         if (!btn) return;
 
         const feesBlock = document.getElementById("outputText");
         if (!feesBlock) return;
 
-        const htmlToCopy = feesBlock.innerHTML;
+        const htmlText = feesBlock.innerHTML;
         const plainText = feesBlock.innerText;
 
         function flashCopied(targetBtn) {
@@ -308,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (navigator.clipboard && window.ClipboardItem) {
-            const blobHtml = new Blob([htmlToCopy], { type: "text/html" });
+            const blobHtml = new Blob([htmlText], { type: "text/html" });
             const blobText = new Blob([plainText], { type: "text/plain" });
 
             const clipboardItem = new ClipboardItem({
@@ -324,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(() => flashCopied(btn));
         }
     });
-	
+
     function calculateFutureDate(days) {
 
         const today = new Date();
