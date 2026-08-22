@@ -110,7 +110,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="date-output text-center mb-5 mt-4">Amend any TUI flight-inclusive package for &pound;50 per person or cancel with loss of deposit if departing <span id="dateOutput" class="fw-bold"></span> or later.</div>
+					<div class="date-output text-center mt-4">Amend any TUI flight-inclusive package for &pound;50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
+					<div class="date-output text-center mb-5">Amend for &pound;50 per person up to <span id="thirtyDays" class="fw-bold"></span> if a 30 day package; normal cancellation fees apply.</div>
                 </div>
             </div>
         </div>
@@ -317,7 +318,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return today.toLocaleDateString("en-GB", options);
     }
 
-    document.getElementById("dateOutput").textContent = calculateFutureDate(70);
+    document.getElementById("seventyDays").textContent = calculateFutureDate(70);
+	document.getElementById("thirtyDays").textContent = calculateFutureDate(30);
 
 });
 </script>
