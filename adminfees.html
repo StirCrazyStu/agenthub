@@ -140,7 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const feeCancel = "Treat as cancellation.";
     const feeFree = "FREE.";
     const feeDeposit = "Deposit Only.";
-    const enterDate = "Please enter a departure date.";
+    const futureDate = "Please enter a departure date.";
+	const pastDate = "The departure date cannot be in the past.";
 
     const fees = document.getElementById("fees");
     const feesOutput = document.getElementById("feesOutput");
@@ -165,21 +166,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function getDaysUntilDeparture(dateString) {
 	
+		const today = new Date();
         const departure = parseDateInput(dateString);
-        const today = new Date();
 
-        const todayLocal = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const departureLocal = new Date(departure.getFullYear(), departure.getMonth(), departure.getDate());
+        const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const departureDate = new Date(departure.getFullYear(), departure.getMonth(), departure.getDate());
 
-        return Math.round((departureLocal - todayLocal) / (1000 * 60 * 60 * 24));
+        return Math.round((departureDate - todayDate) / (1000 * 60 * 60 * 24));
     }
 
     function getCancellationPercentage(daysDifference) {
+	
         if (daysDifference >= 70) return 0;
         if (daysDifference >= 63) return 30;
         if (daysDifference >= 49) return 50;
         if (daysDifference >= 29) return 70;
         if (daysDifference >= 15) return 90;
+		
         return 100;
     }
 
@@ -232,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const error = document.createElement("div");
 
             error.className = "date-error mt-3";
-            error.textContent = enterDate;
+            error.textContent = futureDate;
 
             feesOutput.prepend(error);
 
@@ -246,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const error = document.createElement("div");
 
             error.className = "date-error mt-3";
-            error.textContent = "The departure date cannot be in the past.";
+            error.textContent = pastDate;
 
             feesOutput.prepend(error);
             fees.classList.add("d-none");
