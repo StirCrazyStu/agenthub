@@ -112,8 +112,12 @@
 							</div>
 						</div>
 					</div>
-					<div class="date-output text-center mt-4 mb-5">Amend inclusive packages for &pound;50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
                 </div>
+				
+				<div class="date-output text-center mt-3">Amend inclusive packages for &pound;50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
+				<div class="date-output text-center">Packages with 30 day final payment dates are still subject to amendment and cancellation fees.</div>
+				
+				
             </div>
         </div>
     </main>
@@ -320,7 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("seventyDays").textContent = calculateFutureDate(70);
-	//document.getElementById("thirtyDays").textContent = calculateFutureDate(30);
+	document.getElementById("thirtyDays").textContent = calculateFutureDate(30);
 
 });
 </script>
