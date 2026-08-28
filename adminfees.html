@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <title>Admin Fees - STUIhub</title>
+    <title>Admendment & Cancellation Fees - AgentHub</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Stewart Irvine">
@@ -87,37 +87,40 @@
                             </div>
                         </div>
                     </form>
-					<div id="feesOutput" class="container d-flex align-items-center justify-content-center">
-						<div id="fees" class="block block-rounded bg-light d-none">
-							<div class="block-content block-content-full d-flex justify-content-between p-3">
-								<div id="outputText" class="me-3">
-									<div>Number of days until departure: <strong id="untilDepartureValue"></strong></div>
-									<div>Cancellation Fee: <strong id="cancelFeeValue"></strong></div>
-									<div>To travel on a later date than planned: <strong id="changeDateLaterValue"></strong></div>
-									<div>To change accommodation, airport, or to change a flight not operated by TUI Airways: <strong id="changeAccomValue"></strong></div>
-									<div>To change duration, the time of a TUI Airways flight or to travel on an earlier date than planned: <strong id="changeDateEarlierValue"></strong></div>
-									<div>To upgrade a service, add on a flight extra, upgrade a room type or board basis: <strong id="changeUpgradeValue"></strong></div>
-									<div>To change a name, passenger, or passenger type: <strong id="changeNameValue"></strong></div>
-								</div>
-								<div class="row items-push-2x text-center text-sm-start">
-									<div class="col-sm-6 col-xl-4">
-										<button id="copybutton" type="button" class="btn btn-sm btn-outline-secondary position-relative" aria-label="Copy to clipboard" title="Copy to clipboard">
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-muted" viewBox="0 0 16 16" aria-hidden="true">
-												<path d="M4 1.5H3a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1v-1z" />
-												<path d="M6 0a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H6zm0 1h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
-											</svg>
-										</button>
+                </div>
+				<div class="row justify-content-center">
+					<div class="col-xl-9">
+						<div id="feesOutput" class="container d-flex align-items-center justify-content-center">
+							<div id="fees" class="block block-rounded bg-light d-none">
+								<div class="block-content block-content-full d-flex justify-content-between p-3">
+									<div id="outputText" class="me-3">
+										<div>Number of days until departure: <strong id="untilDepartureValue"></strong></div>
+										<div>Cancellation Fee: <strong id="cancelFeeValue"></strong></div>
+										<div>To travel on a later date than planned: <strong id="changeDateLaterValue"></strong></div>
+										<div>To change accommodation, airport, or to change a flight not operated by TUI Airways: <strong id="changeAccomValue"></strong></div>
+										<div>To change duration, the time of a TUI Airways flight or to travel on an earlier date than planned: <strong id="changeDateEarlierValue"></strong></div>
+										<div>To upgrade a service, add on a flight extra, upgrade a room type or board basis: <strong id="changeUpgradeValue"></strong></div>
+										<div>To change a name, passenger, or passenger type: <strong id="changeNameValue"></strong></div>
+									</div>
+									<div class="row items-push-2x text-center text-sm-start">
+										<div class="col-sm-6 col-xl-4">
+											<button id="copybutton" type="button" class="btn btn-sm btn-outline-secondary position-relative" aria-label="Copy to clipboard" title="Copy to clipboard">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-muted" viewBox="0 0 16 16" aria-hidden="true">
+													<path d="M4 1.5H3a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1v-1z" />
+													<path d="M6 0a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H6zm0 1h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+												</svg>
+											</button>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="my-3">
+							<div class="date-output text-center">Amend inclusive packages for &pound;50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
+							<div class="date-output text-center">Packages with a 30 day final payment date are still subject to amendment and cancellation fees.</div>
+						</div>
 					</div>
-                </div>
-				
-				<div class="date-output text-center mt-3">Amend inclusive packages for &pound;50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
-				<div class="date-output text-center">Packages with a 30 day final payment date are still subject to amendment and cancellation fees.</div>
-				
-				
+				</div>	
             </div>
         </div>
     </main>
@@ -207,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return feeCurrency + feeAmount.toFixed(2) + " (" + percentage + "%)";
     }
 
-    function setFeeValues(daysDifference, bookingAmountValue) {
+    function setAdminFees(daysDifference, bookingAmountValue) {
 
         const cancellationPercentage = getCancellationPercentage(daysDifference);
 		
@@ -265,13 +268,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const bookingAmountValue = parseFloat(bookingAmount.value) || 0;
 
-        setFeeValues(daysDifference, bookingAmountValue);
+        setAdminFees(daysDifference, bookingAmountValue);
         updateOutput(daysDifference);
 
         fees.scrollIntoView({behavior: "smooth"});
     });
 
     document.addEventListener("click", function (e) {
+	
         const btn = e.target.closest("#copybutton");
         if (!btn) return;
 
@@ -282,6 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const plainText = feesBlock.innerText;
 
         function flashCopied(targetBtn) {
+		
             const flash = document.createElement("span");
             flash.textContent = "Copied";
             flash.className = "copy-flash";
@@ -294,17 +299,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (navigator.clipboard && window.ClipboardItem) {
+		
             const blobHtml = new Blob([htmlText], { type: "text/html" });
             const blobText = new Blob([plainText], { type: "text/plain" });
 
-            const clipboardItem = new ClipboardItem({
-                "text/html": blobHtml,
-                "text/plain": blobText
-            });
+            const clipboardItem = new ClipboardItem({"text/html": blobHtml, "text/plain": blobText});
 
             navigator.clipboard.write([clipboardItem])
                 .then(() => flashCopied(btn))
-                .catch(err => console.error("Clipboard copy failed:", err));
+                .catch(err => console.error("Clipboard error: ", err));
         } else {
             navigator.clipboard.writeText(plainText)
                 .then(() => flashCopied(btn));
@@ -324,8 +327,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("seventyDays").textContent = calculateFutureDate(70);
-	document.getElementById("thirtyDays").textContent = calculateFutureDate(30);
-
 });
 </script>
 </body>
