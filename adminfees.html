@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Amendment &amp; Cancellation Fees - AgentHub</title>
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Stewart Irvine">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+	<div id="page-container" class="min-vh-100 d-flex flex-column">
+		<header style="background-color: #70cbf4;" class="py-3">
+			<div class="container d-flex flex-wrap justify-content-center">
+				<div class="d-flex align-items-center me-lg-auto">
+					<a href="#" class="d-flex align-items-center" aria-label="STUIhub home">
+						<svg width="70" height="30" role="img" aria-label="TUI Logo" xmlns="http://www.w3.org/2000/svg">
+							<use href="#tui-logo"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		</header>
+		<main id="main-container" class="bg-white pt-4 flex-grow-1">
+			<div class="container">
+					<div class="alert alert-danger d-flex align-items-center" role="alert">
+					<div class="ms-2 me-1">
+						<svg width="20" height="20" class="me-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Warning">
+							<path fill="currentColor" d="M8.982 1.566a1.13 1.13 0 0 0-1.964 0L.165 13.233c-.457.778.091 1.767.982 1.767h13.706c.89 0 1.438-.99.982-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+						</svg>
+					</div>
+					<div>This calculator is for TUI amendment and cancellation fees on inclusive bookings (including Marella &amp; River Cruises).<br>3PF bookings use the fees below plus any applicable flight or supplier costs.</div>
+				</div>
+				<div class="block-content">
+					<div class="row justify-content-center">
+						<div class="col-xl-9">
+							<form id="urlForm" onsubmit="return false;">
+								<h1 class="fs-4 mb-4 border-bottom py-2">Amendment &amp; Cancellation Fees</h1>
+								<div class="row">
+									<div class="col-lg-4 d-none d-lg-block">
+										<p class="text-muted">Select the departure date to display amendment fees.</p>
+									</div>
+									<div class="col-lg-6 offset-lg-1">
+										<div class="mb-3">
+											<label for="departureDate" class="form-label">Departure Date</label>
+											<input id="departureDate" type="date" class="form-control" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" onclick="this.showPicker();" autocomplete="off">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-4 d-none d-lg-block">
+										<p class="text-muted">Enter the total holiday cost to optionally calculate fees.</p>
+									</div>
+									<div class="col-lg-6 offset-lg-1">
+										<div class="mb-3">
+											<label for="bookingAmount" class="form-label">Booking Amount <span class="text-muted">(optional)</span></label>
+											<input id="bookingAmount" type="text" class="form-control" inputmode="decimal" autocomplete="off">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col d-flex justify-content-center gap-1 my-3">
+										<button id="calculate" type="button" class="btn btn-primary">Calculate</button>
+										<button id="reset" type="reset" class="btn btn-secondary">Reset</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-xl-9">
+						<div id="feesOutput" class="container d-flex align-items-center justify-content-center">
+							<div id="fees" class="bg-light border rounded p-3 d-none w-100 position-relative">
+								<div class="row g-3 align-items-start">
+									<div id="outputText" class="me-3 pe-5">
+										<div>Number of days until departure: <strong id="untilDepartureValue"></strong></div>
+										<div>Cancellation Fee: <strong id="cancelFeeValue"></strong></div>
+										<div>To travel on a later date than planned: <strong id="changeDateLaterValue"></strong></div>
+										<div>To change accommodation, airport, or to change a flight not operated by TUI Airways: <strong id="changeAccomValue"></strong></div>
+										<div>To change duration, the time of a TUI Airways flight or to travel on an earlier date than planned: <strong id="changeDateEarlierValue"></strong></div>
+										<div>To upgrade a service, add on a flight extra, upgrade a room type or board basis: <strong id="changeUpgradeValue"></strong></div>
+										<div>To change a name, passenger, or passenger type: <strong id="changeNameValue"></strong></div>
+									</div>
+								</div>
+								<button id="copyButton" type="button" class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-3" aria-label="Copy to clipboard" title="Copy to clipboard">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-muted" viewBox="0 0 16 16" aria-hidden="true">
+										<path d="M4 1.5H3a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1h-1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1v-1z"/>
+										<path d="M6 0a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H6zm0 1h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+									</svg>
+								</button>
+							</div>
+						</div>
+						<div class="my-4">
+							<div class="text-center">Amend inclusive packages for £50 per person or cancel with loss of deposit if departing <span id="seventyDays" class="fw-bold"></span> or later.</div>
+							<div class="text-center">Packages with a 30 day final payment date are still subject to amendment and cancellation fees.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer id="page-footer" class="mt-auto py-3 bg-body-tertiary">
+			<div class="container">
+				<div class="row small text-muted">
+					<div class="col-md-6 col-xl-6 order-md-1 text-center text-md-start small">Created by Stewart Irvine &copy;2026</div>
+					<div class="col-md-6 col-xl-6 order-md-2 text-center text-md-end small">This app is not officially endorsed or supported by TUI.</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+		<symbol id="tui-logo" viewBox="0 0 389 172" style="fill: #d40e14;">
+			<path d="M387.91,148a2.91,2.91,0,0,0,.83-1.06,4.64,4.64,0,0,0,.26-1.77V87.28a4.84,4.84,0,0,0-.26-1.8,2.52,2.52,0,0,0-.83-1q-1.32-1-6.1-1t-6.2,1a2.51,2.51,0,0,0-.83,1,4.81,4.81,0,0,0-.26,1.8v57.9a3.47,3.47,0,0,0,1.09,2.84q1.32,1,6.2,1T387.91,148Zm-43.19.33a22.06,22.06,0,0,0,8.16-4.73,18.26,18.26,0,0,0,4.68-7.17,26.41,26.41,0,0,0,1.49-9V87.28a3.39,3.39,0,0,0-1-2.84q-1.42-1-6.1-1-4.87,0-6.2,1a2.24,2.24,0,0,0-.85,1,5.25,5.25,0,0,0-.24,1.8v40a15.29,15.29,0,0,1-.83,4.85,7.61,7.61,0,0,1-3.62,4.12,14.54,14.54,0,0,1-7.38,1.63,17.07,17.07,0,0,1-5.42-.76,9.42,9.42,0,0,1-3.67-2.15,8.4,8.4,0,0,1-2.08-3.36,13.46,13.46,0,0,1-.66-4.33v-40a3.39,3.39,0,0,0-1-2.84q-1.42-1-6.1-1-4.87,0-6.2,1a2.24,2.24,0,0,0-.85,1,5.25,5.25,0,0,0-.24,1.8v40.16a26.43,26.43,0,0,0,1.49,9,18.26,18.26,0,0,0,4.68,7.17,22.06,22.06,0,0,0,8.16,4.73A42.58,42.58,0,0,0,344.72,148.35ZM274,148a2.68,2.68,0,0,0,.8-1.06,5,5,0,0,0,.24-1.77V95.79h14.43a9,9,0,0,0,2.6-.31,2.65,2.65,0,0,0,1.56-1.35,11.88,11.88,0,0,0,1-3.55,24.77,24.77,0,0,0,.35-3.64,6,6,0,0,0-.19-1.73,1.82,1.82,0,0,0-.76-1,3,3,0,0,0-1-.35,11.5,11.5,0,0,0-1.89-.12H246.14a9,9,0,0,0-2.6.31A2.66,2.66,0,0,0,242,85.43a10.21,10.21,0,0,0-1,3.12,22.36,22.36,0,0,0-.35,4,6.19,6.19,0,0,0,.19,1.77,1.76,1.76,0,0,0,.8,1,6,6,0,0,0,2.89.47h16.08v49.39a3.31,3.31,0,0,0,1.09,2.84q1.32,1,6.2,1Q272.53,149.06,274,148Z"/>
+			<path d="M10.6,48.32H61.16c5,0,8.69,1.57,10.16,8.61,1.64,7.83,1,13.28-7.85,13.9L47.6,72c11.68,73.82,80,97.88,117.17,18.37,6.16-13.16,8.17-15.55,14.91-13.88,9.14,2.27,10.39,7,6,20.23C153.57,194.7,45.5,204.53,24.3,73.64l-12.89.93C0.91,75.32.5,66.47.5,61.55,0.5,51.81,4.11,48.32,10.6,48.32Z"/>
+			<circle cx="194.42" cy="19.69" r="18.76"/>
+		</symbol>
+	</svg>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+	const feeCurrency = "£";
+	const feeFiftyPP = "50 per person.";
+	const feeTwentyFivePP = "25 per person.";
+	const feeCancel = "Treat as cancellation.";
+	const feeFree = "FREE.";
+	const feeDeposit = "Deposit Only.";
+	const futureDate = "Please enter a departure date.";
+	const pastDate = "The departure date cannot be in the past.";
+
+	const fees = document.getElementById("fees");
+	const feesOutput = document.getElementById("feesOutput");
+	const bookingAmount = document.getElementById("bookingAmount");
+	const departureDate = document.getElementById("departureDate");
+
+	let feeCancellation, feeChangeLater, feeChangeAccom, feeChangeEarlier, feeChangeUpgrade, feeChangeName;
+
+	bookingAmount.addEventListener("input", function (e) {
+		e.target.value = e.target.value.replace(/[^\d.]/g, "");
+	});
+
+	reset.addEventListener("click", function () {
+		fees.classList.add("d-none");
+		feesOutput.querySelector(".date-error")?.remove();
+	});
+
+	function parseDateInput(dateString) {
+
+		const [year, month, day] = dateString.split("-").map(Number);
+
+		return new Date(year, month - 1, day);
+	}
+
+	function getDaysUntilDeparture(dateString) {
+
+		const today = new Date();
+		const departure = parseDateInput(dateString);
+
+		const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+		const departureDate = new Date(departure.getFullYear(), departure.getMonth(), departure.getDate());
+
+		return Math.round((departureDate - todayDate) / (1000 * 60 * 60 * 24));
+	}
+
+	function getCancellationPercentage(daysDifference) {
+
+		if (daysDifference >= 70) return 0;
+		if (daysDifference >= 63) return 30;
+		if (daysDifference >= 49) return 50;
+		if (daysDifference >= 29) return 70;
+		if (daysDifference >= 15) return 90;
+
+		return 100;
+	}
+
+	function getCancellationFees(amount, percentage) {
+
+		if (percentage === 0) {
+			return feeDeposit;
+		}
+
+		if (!amount || amount <= 0) {
+			return percentage + "%";
+		}
+
+		const feeAmount = (amount / 100) * percentage;
+
+		return feeCurrency + feeAmount.toFixed(2) + " (" + percentage + "%)";
+	}
+
+
+	function setAdminFees(daysDifference, bookingCost) {
+
+		const cancellationPercentage = getCancellationPercentage(daysDifference);
+
+		feeCancellation = getCancellationFees(bookingCost, cancellationPercentage);
+
+		feeChangeLater = daysDifference >= 70 ? feeCurrency + feeFiftyPP : feeCancel;
+		feeChangeAccom = daysDifference >= 29 ? feeCurrency + feeFiftyPP : feeCancel;
+
+		feeChangeEarlier = feeCurrency + feeFiftyPP;
+		feeChangeUpgrade = feeFree;
+		feeChangeName = feeCurrency + feeTwentyFivePP;
+	}
+
+	function updateOutput(daysDifference) {
+
+		document.getElementById("untilDepartureValue").textContent = daysDifference;
+		document.getElementById("cancelFeeValue").textContent = feeCancellation;
+		document.getElementById("changeDateLaterValue").textContent = feeChangeLater;
+		document.getElementById("changeAccomValue").textContent = feeChangeAccom;
+		document.getElementById("changeDateEarlierValue").textContent = feeChangeEarlier;
+		document.getElementById("changeUpgradeValue").textContent = feeChangeUpgrade;
+		document.getElementById("changeNameValue").textContent = feeChangeName;
+
+		fees.classList.remove("d-none");
+	}
+
+	calculate.addEventListener("click", function () {
+
+		feesOutput.querySelector(".date-error")?.remove();
+
+		if (!departureDate.value) {
+
+			const error = document.createElement("div");
+
+			error.className = "date-error mt-3";
+			error.textContent = futureDate;
+
+			feesOutput.prepend(error);
+
+			return;
+		}
+
+		const daysDifference = getDaysUntilDeparture(departureDate.value);
+
+		if (daysDifference < 0) {
+		
+			const error = document.createElement("div");
+
+			error.className = "date-error mt-3";
+			error.textContent = pastDate;
+
+			feesOutput.prepend(error);
+			fees.classList.add("d-none");
+
+			return;
+		}
+
+		const bookingCost = parseFloat(bookingAmount.value) || 0;
+
+		setAdminFees(daysDifference, bookingCost);
+
+		updateOutput(daysDifference);
+
+		fees.scrollIntoView({
+			behavior: "smooth"
+		});
+	});
+
+	copyButton.addEventListener("click", function (e) {
+
+		const btn = e.target.closest("#copyButton");
+		const feesBlock = document.getElementById("outputText");
+
+		if (!btn || !feesBlock) return;
+
+		const htmlText = feesBlock.innerHTML;
+		const plainText = feesBlock.innerText;
+
+		function copiedTooltip(targetBtn) {
+
+			const flash = document.createElement("span");
+
+			flash.textContent = "Copied";
+			flash.className = "copy-flash position-absolute top-0 start-0 bg-success text-white small fw-semibold px-2 py-1 rounded-pill";
+			flash.style.transform = "translate(-50%, -50%)";
+
+			targetBtn.style.position = "relative";
+			targetBtn.appendChild(flash);
+
+			setTimeout(() => flash.remove(), 1300);
+		}
+
+		if (navigator.clipboard && window.ClipboardItem) {
+		
+            const blobHtml = new Blob([htmlText], { type: "text/html" });
+            const blobText = new Blob([plainText], { type: "text/plain" });
+
+            const clipboardItem = new ClipboardItem({"text/html": blobHtml, "text/plain": blobText});
+
+            navigator.clipboard.write([clipboardItem])
+                .then(() => copiedTooltip(btn))
+                .catch(err => console.error("Clipboard error: ", err));
+        } else {
+            navigator.clipboard.writeText(plainText)
+                .then(() => copiedTooltip(btn));
+        }
+	});
+
+    function calculateFutureDate(days) {
+
+        const today = new Date();
+
+        today.setHours(0, 0, 0, 0);
+        today.setDate(today.getDate() + days);
+
+        const options = {year: "numeric", month: "long", day: "numeric"};
+
+        return today.toLocaleDateString("en-GB", options);
+    }
+
+	document.getElementById("seventyDays").textContent = calculateFutureDate(70);
+});
+</script>
+</html>
